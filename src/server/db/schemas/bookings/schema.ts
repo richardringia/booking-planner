@@ -95,6 +95,13 @@ export const bookingAdditionalTypes = createTable(
   },
 );
 
+export const bookingAdditionalTypesRelations = relations(
+  bookingAdditionalTypes,
+  ({ many }) => ({
+    items: many(bookingAdditionalItems),
+  }),
+);
+
 export const bookingAdditionalRates = createTable("booking_additional_rates", {
   id: serial("id").primaryKey(),
   additionalItemId: integer("additional_item_id"),

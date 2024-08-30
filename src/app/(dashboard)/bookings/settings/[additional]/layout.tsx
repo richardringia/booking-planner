@@ -3,11 +3,13 @@ import { api } from "~/trpc/server";
 
 export default async function Layout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { additional: string };
 }) {
   const types = await api.bookingAdditional.getTypes();
-  console.log(types);
+  console.log(params.additional);
 
   return (
     <>
@@ -20,7 +22,15 @@ export default async function Layout({
           x-chunk="dashboard-04-chunk-0"
         >
           {types.map((type) => (
-            <Link href={`/booking-types/${type.id}`} key={type.id}>
+            <Link
+              href={`/bookings/settings/${type.name}`}
+              key={type.id}
+              className={
+                params.additional === type.name
+                  ? "text-primary font-semibold"
+                  : ""
+              }
+            >
               {type.label}
             </Link>
           ))}
