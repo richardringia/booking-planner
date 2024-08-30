@@ -1,0 +1,2 @@
+ALTER TABLE "massage-planner_booking_additional_types" ADD COLUMN "label" varchar(256) NOT NULL;--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS "booking_additional_type_name_idx" ON "massage-planner_booking_additional_types" USING btree ("name");
